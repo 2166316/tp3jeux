@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4677816877424247030}
   m_Layer: 0
   m_Name: Interrupter
-  m_TagString: Untagged
+  m_TagString: Interrupteur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6651406165330519570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3945, y: 0.2593, z: -0.98}
+  m_LocalPosition: {x: -0.15065098, y: -6, z: 8.417038}
   m_LocalScale: {x: 1.1982777, y: 0.3680357, z: 1.1845372}
   m_ConstrainProportionsScale: 0
   m_Children: []
