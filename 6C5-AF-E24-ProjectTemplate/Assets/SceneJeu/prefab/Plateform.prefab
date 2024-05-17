@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interupterPrefab: {fileID: 6651406165330519570}
+  isActivated: 0
 --- !u!1 &5869967985024806058
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,10 +807,13 @@ MonoBehaviour:
   targetInterrupteurLocation: {fileID: 7706666639889424124}
   targetDoorLocation1: {fileID: 6621664206337026351}
   targetDoorLocation2: {fileID: 6085741831805964955}
+  targetDoorLocation1Renderer: {fileID: 0}
+  targetDoorLocation2Renderer: {fileID: 0}
   succesMaterial: {fileID: 2100000, guid: d3a0aa6721c0aa440a9528191165cbe9, type: 2}
   failureMaterial: {fileID: 2100000, guid: 0282f392fed998744bfd591029c0c15d, type: 2}
   defaultMaterial: {fileID: 2100000, guid: dc151dc5b9a362c4892d00db765ec22e, type: 2}
   floorRenderer: {fileID: 1279120680074634490}
+  interupteurRenderer: {fileID: 0}
 --- !u!114 &3157253849807646973
 MonoBehaviour:
   m_ObjectHideFlags: 0

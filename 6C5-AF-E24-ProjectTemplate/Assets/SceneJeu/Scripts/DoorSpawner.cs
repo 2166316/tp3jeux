@@ -8,8 +8,11 @@ public class DoorSpawner : MonoBehaviour
 
     private Vector3 doorScale;
 
-    private Vector3 doorPositionBeginXAxis;
-    private Vector3 doorPositionEndXAxis;
+    private Vector3 doorPosition1BeginXAxis;
+    private Vector3 doorPosition1EndXAxis;
+
+    private Vector3 doorPosition2BeginXAxis;
+    private Vector3 doorPosition2EndXAxis;
 
     private Vector3 doorPositionBeginYAxisRight;
     private Vector3 doorPositionEndYAxisRight;
@@ -26,8 +29,10 @@ public class DoorSpawner : MonoBehaviour
         doorScale = new Vector3(3.3f, 3.8f, 0.28f);
 
         //mur face
-        doorPositionBeginXAxis = new Vector3(-6f, -4.1f, 13.79f);
-        doorPositionEndXAxis = new Vector3(2.5f, -4.1f, 13.79f);
+        doorPosition1BeginXAxis = new Vector3(-6.5f, -4.1f, 13.79f);
+        doorPosition1EndXAxis = new Vector3(-4f, -4.1f, 13.79f);
+        doorPosition2BeginXAxis = new Vector3(-0.5f, -4.1f, 13.79f);
+        doorPosition2EndXAxis = new Vector3(3.5f, -4.1f, 13.79f);
 
         //mur droite
         doorPositionBeginYAxisRight = new Vector3(5.27f, -4.1f, 10f);
@@ -77,7 +82,7 @@ public class DoorSpawner : MonoBehaviour
 
         }*/
         //left
-        newPosition = new Vector3(Random.Range(doorPositionBeginXAxis.x, doorPositionEndXAxis.x), doorPositionBeginXAxis.y, doorPositionBeginXAxis.z);
+        newPosition = new Vector3(Random.Range(doorPosition1BeginXAxis.x, doorPosition1EndXAxis.x), doorPosition1BeginXAxis.y, doorPosition1BeginXAxis.z);
         newRotation = Quaternion.Euler(0, 0, 0);
         doorPrefab1.transform.localPosition = newPosition;
         doorPrefab1.transform.localRotation = newRotation;
@@ -122,8 +127,8 @@ public class DoorSpawner : MonoBehaviour
 
          }*/
         //right
-        newPosition = new Vector3(doorPositionBeginYAxisRight.x, doorPositionBeginYAxisRight.y, Random.Range(doorPositionEndYAxisLeft.z, doorPositionBeginYAxisLeft.z));
-        newRotation = Quaternion.Euler(0, 90, 0);
+        newPosition = new Vector3(Random.Range(doorPosition2BeginXAxis.x, doorPosition2EndXAxis.x), doorPosition2EndXAxis.y, doorPosition2EndXAxis.z);
+        newRotation = Quaternion.Euler(0, 0, 0);
 
         doorPrefab2.transform.localPosition = newPosition;
         doorPrefab2.transform.localRotation = newRotation;
@@ -139,15 +144,15 @@ public class DoorSpawner : MonoBehaviour
             case 1:
                 door1Val.isOpen = true;
                 door2Val.isOpen = false;
-                door2renderer.material.color = Color.grey;
-                door1renderer.material.color = Color.green;
+                //door2renderer.material.color = Color.grey;
+                //door1renderer.material.color = Color.green;
                 break;
 
             case 2:
                 door1Val.isOpen = false;
                 door2Val.isOpen = true;
-                door2renderer.material.color = Color.green;
-                door1renderer.material.color = Color.grey;
+                //door2renderer.material.color = Color.green;
+               // door1renderer.material.color = Color.grey;
                 break;
 
             default:

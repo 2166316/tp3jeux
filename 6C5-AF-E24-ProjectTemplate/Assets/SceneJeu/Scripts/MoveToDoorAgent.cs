@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.Sentis.Layers;
 using UnityEngine;
 
 public class MoveToDoorAgent : Agent
@@ -10,7 +11,8 @@ public class MoveToDoorAgent : Agent
     [SerializeField] private Transform targetInterrupteurLocation;
     [SerializeField] private Transform targetDoorLocation1;
     [SerializeField] private Transform targetDoorLocation2;
-
+    [SerializeField] private Renderer targetDoorLocation1Renderer;
+    [SerializeField] private Renderer targetDoorLocation2Renderer;
 
     private float speed = 20;
 
@@ -18,15 +20,36 @@ public class MoveToDoorAgent : Agent
     [SerializeField] private Material failureMaterial;
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private Renderer floorRenderer;
+    [SerializeField] private Renderer interupteurRenderer;
 
     private InterupterSpawner interupterSpawner;
     private DoorSpawner doorSpawner;
+
+    private Vector3 doorObjectivePosition;
+
+    private Vector3 lastLocalPostition;
 
     private void Start()
     {
         interupterSpawner = GetComponentInParent<InterupterSpawner>();
         doorSpawner = GetComponentInParent<DoorSpawner>();
         
+    }
+
+    private void Update()
+    {
+
+        if (interupterSpawner.isActivated)
+        {
+            interupteurRenderer.material.color = Color.green;
+        }
+        else
+        {
+            interupteurRenderer.material.color = Color.red;
+        }
+
+       // DoorValues doorValues = targetDoorLocation1.GetComponent<DoorValues>();
+       
     }
 
 
@@ -49,8 +72,8 @@ public class MoveToDoorAgent : Agent
     {
         //the position of the agent in the local space (x,y,z)
         sensor.AddObservation(transform.localPosition);
+
         //the position of the goal in the local space (x,y,z)
-        
         sensor.AddObservation(targetInterrupteurLocation.localPosition);
 
         sensor.AddObservation(targetDoorLocation1.localPosition);
@@ -60,21 +83,30 @@ public class MoveToDoorAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(interupterSpawner.isActivated);
-        Debug.Log(other.tag);
-
         if (other.CompareTag("Interrupteur"))
         {
             if (interupterSpawner.isActivated)
             {
-                AddReward(-10f);
+                AddReward(-2f);
                 interupterSpawner.isActivated = false;
+                StopCoroutine(givePointsIfGettingCloser());
+
             }
             else
             {
-                Debug.Log("test1");
-                AddReward(5f);
+                AddReward(2f);
                 interupterSpawner.isActivated = true;
+                if (targetDoorLocation2.GetComponent<DoorValues>().isOpen == true)
+                {
+                    targetDoorLocation2Renderer.material.color = Color.green;
+                }
+                else
+                {
+                    targetDoorLocation1Renderer.material.color = Color.green;
+                }
+                StartCoroutine(givePointsIfGettingCloser());
+
+
             }
         }
 
@@ -82,26 +114,23 @@ public class MoveToDoorAgent : Agent
         {
             if (interupterSpawner.isActivated)
             {
-                Debug.Log("test2");
                 DoorValues doorValues = other.GetComponent<DoorValues>();
-                Debug.Log(doorValues.isOpen);
                 if (doorValues.isOpen)
                 {
-                    Debug.Log("test3");
-                    AddReward(10f);
+                    AddReward(2f);
                     floorRenderer.material = succesMaterial;
                     EndEpisode();
                 }
                 else
                 {
-                    AddReward(-5f);
+                    AddReward(-2f);
                     floorRenderer.material = failureMaterial;
                     EndEpisode();
                 }
             }
             else
             {
-                AddReward(-5f);
+                AddReward(-2f);
                 floorRenderer.material = failureMaterial;
                 EndEpisode();
             }
@@ -109,23 +138,18 @@ public class MoveToDoorAgent : Agent
 
         if (other.CompareTag("Wall"))
         {
-            AddReward(-5f);
+            AddReward(-2f);
             floorRenderer.material = failureMaterial;
             EndEpisode();
         }
         //Debug.Log(other.tag);
     }
 
-    private IEnumerator wait2Seconds()
-    {
-        
-        yield return new WaitForSeconds(2f);
-        floorRenderer.material = defaultMaterial;
-
-    }
-
     public override void OnEpisodeBegin()
     {
+        StopCoroutine(givePointsIfGettingCloser());
+        targetDoorLocation1Renderer.material.color = Color.gray;
+        targetDoorLocation2Renderer.material.color = Color.gray;
         //same position
         transform.localPosition = new Vector3(Random.Range(-2f,0f), -4.83f, Random.Range(7f, 8f));
 
@@ -134,6 +158,18 @@ public class MoveToDoorAgent : Agent
 
         //reset l'intérupteur
         interupterSpawner.isActivated = false;
+
+
+        if (targetDoorLocation2.GetComponent<DoorValues>().isOpen == true)
+        {
+            doorObjectivePosition = targetDoorLocation2.localPosition;
+        }
+        else
+        {
+            doorObjectivePosition = targetDoorLocation1.localPosition;
+        }
+        //StopAllCoroutines();
+       // StartCoroutine(givePointsIfGettingCloser());
         //floorRenderer.material = defaultMaterial;
     }
 
@@ -142,5 +178,21 @@ public class MoveToDoorAgent : Agent
         ActionSegment<float> contActions = actionsOut.ContinuousActions;
         contActions[0] = Input.GetAxisRaw("Horizontal") * 0.2f;
         contActions[1] = Input.GetAxisRaw("Vertical") * 0.2f;
+    }
+
+    public IEnumerator givePointsIfGettingCloser()
+    {
+        if ( Vector3.Distance(transform.localPosition, doorObjectivePosition) < Vector3.Distance(lastLocalPostition, doorObjectivePosition))
+        {
+            AddReward(1f);
+        }
+        else
+        {
+            AddReward(-3f);
+        }
+
+       yield return new WaitForSeconds(0.1f);
+        givePointsIfGettingCloser();
+        lastLocalPostition = transform.localPosition;
     }
 }
