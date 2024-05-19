@@ -1,0 +1,65 @@
+{
+    "AgentEscape": {
+        "checkpoints": [
+            {
+                "steps": 499993,
+                "file_path": "results\\Test\\AgentEscape\\AgentEscape-499993.onnx",
+                "reward": -1.267105303760758,
+                "creation_time": 1716145525.782635,
+                "auxillary_file_paths": [
+                    "results\\Test\\AgentEscape\\AgentEscape-499993.pt"
+                ]
+            },
+            {
+                "steps": 999993,
+                "file_path": "results\\Test\\AgentEscape\\AgentEscape-999993.onnx",
+                "reward": 9.863715786589054,
+                "creation_time": 1716145882.0920877,
+                "auxillary_file_paths": [
+                    "results\\Test\\AgentEscape\\AgentEscape-999993.pt"
+                ]
+            },
+            {
+                "steps": 1499990,
+                "file_path": "results\\Test\\AgentEscape\\AgentEscape-1499990.onnx",
+                "reward": 10.823293744571625,
+                "creation_time": 1716146253.7294297,
+                "auxillary_file_paths": [
+                    "results\\Test\\AgentEscape\\AgentEscape-1499990.pt"
+                ]
+            },
+            {
+                "steps": 1999989,
+                "file_path": "results\\Test\\AgentEscape\\AgentEscape-1999989.onnx",
+                "reward": 11.238070249557495,
+                "creation_time": 1716146608.2973483,
+                "auxillary_file_paths": [
+                    "results\\Test\\AgentEscape\\AgentEscape-1999989.pt"
+                ]
+            },
+            {
+                "steps": 2156740,
+                "file_path": "results\\Test\\AgentEscape\\AgentEscape-2156740.onnx",
+                "reward": 10.84132234452513,
+                "creation_time": 1716146719.5820718,
+                "auxillary_file_paths": [
+                    "results\\Test\\AgentEscape\\AgentEscape-2156740.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2156740,
+            "file_path": "results\\Test\\AgentEscape.onnx",
+            "reward": 10.84132234452513,
+            "creation_time": 1716146719.5820718,
+            "auxillary_file_paths": [
+                "results\\Test\\AgentEscape\\AgentEscape-2156740.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cpu"
+    }
+}

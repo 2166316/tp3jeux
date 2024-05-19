@@ -2,28 +2,28 @@
     "AgentEscape": {
         "checkpoints": [
             {
-                "steps": 291718,
-                "file_path": "results\\ppo\\AgentEscape\\AgentEscape-291718.onnx",
-                "reward": -1.961487905693054,
-                "creation_time": 1715969789.6281426,
+                "steps": 157637,
+                "file_path": "results\\ppo\\AgentEscape\\AgentEscape-157637.onnx",
+                "reward": -5.304740787435461,
+                "creation_time": 1716144998.6063576,
                 "auxillary_file_paths": [
-                    "results\\ppo\\AgentEscape\\AgentEscape-291718.pt"
+                    "results\\ppo\\AgentEscape\\AgentEscape-157637.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 291718,
+            "steps": 157637,
             "file_path": "results\\ppo\\AgentEscape.onnx",
-            "reward": -1.961487905693054,
-            "creation_time": 1715969789.6281426,
+            "reward": -5.304740787435461,
+            "creation_time": 1716144998.6063576,
             "auxillary_file_paths": [
-                "results\\ppo\\AgentEscape\\AgentEscape-291718.pt"
+                "results\\ppo\\AgentEscape\\AgentEscape-157637.pt"
             ]
         }
     },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "1.1.0.dev0",
-        "torch_version": "2.2.2+cu121"
+        "torch_version": "2.2.2+cpu"
     }
 }

@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 6
+    VectorObservationSize: 12
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -803,17 +803,17 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 1000000
   targetInterrupteurLocation: {fileID: 7706666639889424124}
   targetDoorLocation1: {fileID: 6621664206337026351}
   targetDoorLocation2: {fileID: 6085741831805964955}
-  targetDoorLocation1Renderer: {fileID: 0}
-  targetDoorLocation2Renderer: {fileID: 0}
+  targetDoorLocation1Renderer: {fileID: 2564969883847828872}
+  targetDoorLocation2Renderer: {fileID: 4133363156967549214}
   succesMaterial: {fileID: 2100000, guid: d3a0aa6721c0aa440a9528191165cbe9, type: 2}
   failureMaterial: {fileID: 2100000, guid: 0282f392fed998744bfd591029c0c15d, type: 2}
   defaultMaterial: {fileID: 2100000, guid: dc151dc5b9a362c4892d00db765ec22e, type: 2}
   floorRenderer: {fileID: 1279120680074634490}
-  interupteurRenderer: {fileID: 0}
+  interupteurRenderer: {fileID: 3482160532974254022}
 --- !u!114 &3157253849807646973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ Transform:
   m_GameObject: {fileID: 6254912449953176264}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8, y: -4.1, z: 13.68}
+  m_LocalPosition: {x: 3.53, y: -4.1, z: 13.68}
   m_LocalScale: {x: 3.3, y: 3.8, z: 0.28}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1066,7 +1066,7 @@ Transform:
   m_GameObject: {fileID: 6633677727925607137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -4.1, z: 13.68}
+  m_LocalPosition: {x: -4.04, y: -4.1, z: 13.68}
   m_LocalScale: {x: 3.3, y: 3.8, z: 0.28}
   m_ConstrainProportionsScale: 0
   m_Children: []

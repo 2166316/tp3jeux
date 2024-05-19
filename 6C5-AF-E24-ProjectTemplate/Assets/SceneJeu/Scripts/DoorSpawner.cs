@@ -139,26 +139,28 @@ public class DoorSpawner : MonoBehaviour
         DoorValues door1Val = doorPrefab1.GetComponent<DoorValues>();
         Renderer door2renderer = doorPrefab2.GetComponent<Renderer>();
         Renderer door1renderer = doorPrefab1.GetComponent<Renderer>();
-        switch (randomNumberD)
-        {
-            case 1:
-                door1Val.isOpen = true;
-                door2Val.isOpen = false;
-                //door2renderer.material.color = Color.grey;
-                //door1renderer.material.color = Color.green;
-                break;
+        /* switch (randomNumberD)
+         {
+             case 1:
+                 door1Val.isOpen = true;
+                 door2Val.isOpen = false;
+                 //door2renderer.material.color = Color.grey;
+                 //door1renderer.material.color = Color.green;
+                 break;
 
-            case 2:
-                door1Val.isOpen = false;
-                door2Val.isOpen = true;
-                //door2renderer.material.color = Color.green;
-               // door1renderer.material.color = Color.grey;
-                break;
+             case 2:
+                 door1Val.isOpen = false;
+                 door2Val.isOpen = true;
+                 //door2renderer.material.color = Color.green;
+                // door1renderer.material.color = Color.grey;
+                 break;
 
-            default:
-                Debug.Log("Erreur: " + randomNumberD);
-                break;
-        }
+             default:
+                 Debug.Log("Erreur: " + randomNumberD);
+                 break;
+         }*/
+        door1Val.isOpen = false;
+        door2Val.isOpen = true;
     }
 
    /* private IEnumerator wait2Seconds()

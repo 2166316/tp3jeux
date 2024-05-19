@@ -33,6 +33,7 @@ public class MoveToDoorAgent : Agent
     {
         interupterSpawner = GetComponentInParent<InterupterSpawner>();
         doorSpawner = GetComponentInParent<DoorSpawner>();
+        this.MaxStep = 0;
         
     }
 
@@ -87,9 +88,9 @@ public class MoveToDoorAgent : Agent
         {
             if (interupterSpawner.isActivated)
             {
-                AddReward(-2f);
+                AddReward(-4f);
                 interupterSpawner.isActivated = false;
-                StopCoroutine(givePointsIfGettingCloser());
+                //StopCoroutine(givePointsIfGettingCloser());
 
             }
             else
@@ -104,7 +105,7 @@ public class MoveToDoorAgent : Agent
                 {
                     targetDoorLocation1Renderer.material.color = Color.green;
                 }
-                StartCoroutine(givePointsIfGettingCloser());
+                //StartCoroutine(givePointsIfGettingCloser());
 
 
             }
@@ -117,20 +118,20 @@ public class MoveToDoorAgent : Agent
                 DoorValues doorValues = other.GetComponent<DoorValues>();
                 if (doorValues.isOpen)
                 {
-                    AddReward(2f);
+                    AddReward(10f);
                     floorRenderer.material = succesMaterial;
                     EndEpisode();
                 }
                 else
                 {
-                    AddReward(-2f);
+                    AddReward(-5f);
                     floorRenderer.material = failureMaterial;
                     EndEpisode();
                 }
             }
             else
             {
-                AddReward(-2f);
+                AddReward(-5f);
                 floorRenderer.material = failureMaterial;
                 EndEpisode();
             }
@@ -138,7 +139,7 @@ public class MoveToDoorAgent : Agent
 
         if (other.CompareTag("Wall"))
         {
-            AddReward(-2f);
+            AddReward(-4f);
             floorRenderer.material = failureMaterial;
             EndEpisode();
         }
@@ -182,14 +183,14 @@ public class MoveToDoorAgent : Agent
 
     public IEnumerator givePointsIfGettingCloser()
     {
-        if ( Vector3.Distance(transform.localPosition, doorObjectivePosition) < Vector3.Distance(lastLocalPostition, doorObjectivePosition))
+        /*if ( Vector3.Distance(transform.localPosition, doorObjectivePosition) < Vector3.Distance(lastLocalPostition, doorObjectivePosition))
         {
             AddReward(1f);
         }
         else
         {
             AddReward(-3f);
-        }
+        }*/
 
        yield return new WaitForSeconds(0.1f);
         givePointsIfGettingCloser();
